@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit</title>
+</head>
+<body>
+<form method="POST" th:action="@{/book/{id}(id=${book.getId()})}" th:object="${book}">
+  <label for="title">Введите название</label>
+  <input type="text" id="title" th:field="*{title}">
+  <br>
+  <label for="author">Введите автора</label>
+  <input type="text" id="author" th:field="*{author}">
+  <br>
+  <label for="prodYear">Введите дату издания</label>
+  <input type="text" id="prodYear" th:field="*{prodYear}">
+  <br>
+  <input type="submit" value="Изменить">
+</form>
+
+</body>
+</html>
