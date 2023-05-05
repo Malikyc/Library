@@ -7,22 +7,21 @@
 <body>
 <p th:text="${book.getTitle()} + ', '+${book.getAuthor()}+', '+${book.getProdYear()}"></p>
 <hr>
-<div th:if="${bookOwner == null}">
+<div th:if="${people}">
   <p>Книга свободна,кому назначить ее?</p>
-  <form method="POST" th:action="@{/book/newUser/{id}(id=${book.getId()})}" th:object="${book}">
+  <form method="POST" th:action="@{/book/assign/{id}(id=${book.getId()})}" >
     <label for="selector">Кому назначить книгу</label>
-    <select id="selector" th:object="${book}" th:field="*{user_id}">
+    <select id="selector" th:object="${personTo}" th:field="*{id}">
       <option th:each="person : ${people}" th:value="${person.getId()}"
               th:text="${person.getFullName()}"></option>
     </select>
     <input type="submit" value="Назначить книгу">
   </form>
 </div>
-<div th:if="not ${bookOwner == null}">
+<div th:if="${bookOwner}">
   <p th:text="'Книгой владеет '+${bookOwner.getFullName()}"></p>
-  <form method="POST" th:action="@{/book/newUser/{id}(id=${book.getId()})}"
-        th:object="${book}">
-      <input type="hidden" id="user_id" th:value="-1">
+  <form method="POST" th:action="@{/book/release/{id}(id=${book.getId()})}">
+      <input type="hidden" id="owner">
     <input type="submit"   value="Освободить книгу">
   </form>
 </div>

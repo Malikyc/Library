@@ -12,7 +12,7 @@
 <div th:if="not ${booksOfPerson.isEmpty()}">
     <hr>
     <div th:each="book : ${booksOfPerson}">
-        <p th:text="'Книги: '+${book.getTitle()}+', '+${book.getProdYear()}"/>
+        <p th:style="${book.isExpired() ? 'color:red' : 'color:black'}" th:text="'Книги: '+${book.getTitle()}+', '+${book.getProdYear()}"/>
     </div>
 </div>
 <hr>

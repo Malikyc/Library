@@ -12,4 +12,9 @@
 <br>
 <hr>
 <a th:href="@{/book/new}">Добавить новую книгу</a>
+<br>
+<hr>
+<form method="GET" th:action="@{/book/search}">
+  <input type="submit" value="Страница поиска">
+</form>
 </html>
